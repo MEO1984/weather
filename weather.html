@@ -46,14 +46,14 @@
             
 
             var cityTime= response.dt;
-            var pDate = $("<p>").text(cityTime);
+            var pDate = $("<p>").text("Time: " + cityTime);
             weatherDiv.append(pDate);
 
             // var imageURL = response.weather[0].icon;
-            var image = $("<img>").html(imageURL);
-            weatherDiv.append(image);
+            // var image = $("<img>").html(imageURL);
+            // weatherDiv.append(image);
 
-            // var temp = response.main.temp;
+            var temp = response.main.temp;
             var pTemp = $("<p>").text("Temperature: " + temp + " F")
             weatherDiv.append(pTemp);
 
