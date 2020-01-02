@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 </head>
 <body>
@@ -29,29 +30,28 @@
         
         $("#goButton").on("click", function() {
             var cityName = document.querySelector("#box").value;
-            var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&apikey=1fe1b1156deb9197209e78927d7eff85";
+            var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&apikey=1fe1b1156deb9197209e78927d7eff85";
         
         
             $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function(response){
-            // console.log(response); (just to see object)
-            var weatherDiv = $("<div>");
-            
+            console.log(response); 
+            var weatherDiv = $("<div>").css('border', '1px solid black');
             var cityId = response.name;
             var pCity = $("<h1>").text(cityId);
             weatherDiv.append(pCity);
 
             
 
-            var cityTime= response.dt;
-            var pDate = $("<p>").text("Time: " + cityTime);
-            weatherDiv.append(pDate);
+            var cityDate = moment().format('L');
+            weatherDiv.append(cityDate);
 
-            // var imageURL = response.weather[0].icon;
-            // var image = $("<img>").html(imageURL);
-            // weatherDiv.append(image);
+            var imageURL = response.weather[0].icon;
+            var image = "http://openweathermap.org/img/w/" + imageURL + ".png";
+            var weatherImage = $('<img>').attr('src', image);
+            weatherDiv.append(weatherImage);
 
             var temp = response.main.temp;
             var pTemp = $("<p>").text("Temperature: " + temp + " F")
