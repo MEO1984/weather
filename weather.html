@@ -49,7 +49,7 @@
             weatherDiv.append(cityDate);
 
             var imageURL = response.weather[0].icon;
-            var image = "http://openweathermap.org/img/w/" + imageURL + ".png";
+            var image = "https://openweathermap.org/img/w/" + imageURL + ".png";
             var weatherImage = $('<img>').attr('src', image);
             weatherDiv.append(weatherImage);
 
